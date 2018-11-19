@@ -1,0 +1,4 @@
+apiVersion: "philbrookes/finalizer"
+kind: "Item"
+metadata:
+  name: "example"

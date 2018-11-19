@@ -1,0 +1,3 @@
+apiVersion: philbrookes/finalizer
+kind: Item
+projectName: finalizer-operator
