@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    -
+      name: "Create finalizer test namespace"
+      shell: "oc new-project finalizer-test"
+      register: output
+      failed_when: output.stderr != '' and 'already exists' not in output.stderr
+      changed_when: output.rc == 0
+    
+    -
+      name: "create resources"
+      shell: "oc create -f ../../deploy/{{item}}.yaml -n finalizer-test"
+      register: output
+      failed_when: output.stderr != '' and 'already exists' not in output.stderr
+      changed_when: output.rc == 0
+      with_items:
+        - crd
+        - rbac
+        - cr
+        - operator
+
+    -
+      name: "wait for operator to add finalizer"
+      shell: oc get item example -o template --template=\{\{.metadata.finalizers\}\} | grep "phil.brookes"
+      register: result
+      until: result.stdout
+      retries: 50
+      delay: 5
+      failed_when: not result.stdout
+      changed_when: result.stdout
+
+    - 
+      name: "Delete namespace finalizer-test"
+      shell: "oc delete project finalizer-test"

@@ -5,10 +5,10 @@ import (
 	"runtime"
 	"time"
 
-	stub "github.com/philbrookes/finalizer-operator/finalizer-operator/pkg/stub"
 	sdk "github.com/operator-framework/operator-sdk/pkg/sdk"
 	k8sutil "github.com/operator-framework/operator-sdk/pkg/util/k8sutil"
 	sdkVersion "github.com/operator-framework/operator-sdk/version"
+	stub "github.com/philbrookes/finalizer-operator/pkg/stub"
 
 	"github.com/sirupsen/logrus"
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
@@ -25,7 +25,7 @@ func main() {
 
 	sdk.ExposeMetricsPort()
 
-	resource := "philbrookes/finalizer"
+	resource := "phil.brookes/finalizer"
 	kind := "Item"
 	namespace, err := k8sutil.GetWatchNamespace()
 	if err != nil {

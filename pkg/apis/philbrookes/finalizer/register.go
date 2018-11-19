@@ -10,7 +10,7 @@ import (
 
 const (
 	version   = "finalizer"
-	groupName = "philbrookes"
+	groupName = "phil.brookes"
 )
 
 var (

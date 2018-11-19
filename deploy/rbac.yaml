@@ -4,7 +4,7 @@ metadata:
   name: finalizer-operator
 rules:
 - apiGroups:
-  - philbrookes
+  - phil.brookes
   resources:
   - "*"
   verbs:

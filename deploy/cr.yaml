@@ -1,4 +1,4 @@
-apiVersion: "philbrookes/finalizer"
+apiVersion: "phil.brookes/finalizer"
 kind: "Item"
 metadata:
   name: "example"
